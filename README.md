@@ -8,6 +8,9 @@
 
 [Cédric Lenoir](mailto:cedric.lenoir@hevs.ch)
 
+# To be updated with [GitLab Lab 01 2026](https://gitlab.hevs.ch/infrastructure/labos/automation-box/s6-auta-advanced-automation/aaut-lab-01_2026)
+ HEVS Internal access only!
+
 # AAut Lab 01 / URS for a Gripper with I_Interface
 
 ## Objectifs
