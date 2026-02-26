@@ -16,6 +16,18 @@ The goal of this lab is to understand the bases of IEC-61131-3 intefaces with me
 
 ## Keywords
 Method, Interface, Property, Absract.
+---
+## Table of Contents
+- [Object Interface and Methods](#object-interface-and-methods)
+- [To prepare before the lab](#to-prepare-before-the-lab)
+  - [Part One: Testing interfaces and methods](#part-one)
+  - [Part Two: Inheritance Concepts](#second-part)
+  - [Part Three: Control Module with PackML](#part-three)
+- [OPC-UA Expert](#opc-ua-expert-opional)
+- [Add an alarm](#add-an-alarm)
+- [Structure of sensors](#structure-of-sensors)
+
+---
 
 # To prepare before the lab!
 1.  The UML Schema in a Markdown file wiht mermaid.
@@ -59,19 +71,19 @@ classDiagram
 ## Part One
 ### Testing the concept of interfaces and methods.
 - We create a signal generator that uses an **interface** with the following properties:
-- Set SampleSignal, which is: **a loop counter in the program**.
-- Set Amplitude
-- Set Frequency
-- Get Signal
-- A method to select the signal type. ``mSetForm(uiInterface.xFalseSinTrueSquare)``, [See below in Interface for UI](#interface-for-ui). *Using an ENUM is an elegant and easily extensible solution*.
+- **Set** SampleSignal, which is: **a loop counter in the program**.
+- **Set** Amplitude
+- **Set** Frequency
+- **Get** Signal
+- A **method** to select the signal type. ``mSetForm(uiInterface.xFalseSinTrueSquare)``, [See below in Interface for UI](#interface-for-ui). *Using an ENUM is an elegant and easily extensible solution*.
 - Accessible only internally, there are two methods:
 - The first generates a sine wave.
 - The second generates a square wave.
 
 #### Help
-- The main program provides a constant **PI**.
+- The main program ``Lab_01_AAut`` provides a constant **PI**.
 
-- The main program provides a structure that allows access to the Node-RED UI. ``ST_Lab_01_Interface``. This means we will use the generator's Set and Get methods to read from or write to this structure, simplifying the process.
+- The main program ``Lab_01_AAut`` provides a structure that allows access to the Node-RED UI. ``ST_Lab_01_Interface``. This means we will use the generator's Set and Get methods to read from or write to this structure, simplifying the process.
 
 - The main program **Lab_01_AAut** has a cycle time of 10ms.
 
@@ -214,7 +226,7 @@ For this lab, use <strong style="color: #FF0000;">call </strong> because of the 
 For more details, have a look in the [Codesys documentation](https://content.helpme-codesys.com/en/CODESYS%20Development%20System/_cds_pragma_attribute_monitoring.html) or the blog of [Gerhard Barteling](https://www.plccoder.com/monitoring-attributes/).
 
 
-### OPC-UA Expert
+### OPC-UA Expert (Opional)
 You can use the [UaExpert](https://www.unified-automation.com/downloads/opc-ua-clients.html) software, published by a leading OPC-UA solution provider, to view and test methods.
 
 **UA Expert can be considered the reference client software for OPC-UA. If your server works correctly with UA Expert and there is a communication problem, then the issue lies with the client side.**
@@ -252,7 +264,7 @@ What we'll do:
 2.  During **Resetting**, we open the Gripper.
 3.  During **Stopping**, we open the Gripper.
 4.  During **Aborting**, we deactivate the Gripper.
-5.  During Execute, we open the Gripper for 3 seconds when the laser sensor detects the target, then we close it when the detector loses the gripper.
+5.  During **Execute**, we open the Gripper for 3 seconds when the laser sensor detects the target, then we close it when the detector loses the gripper.
 6.  The FB_I_Gripper is designed so that it deactivates itself in case of an error. Therefore, an **Abort** level alarm must be used in case of an error on the Gripper. *Abort command cause a passage thru the Aborting state*
 
 > If the DM_O300_DL_optical device, you will use it to program the CM_Gripper. Else you could use quick and dirty programming by using directly the [UA_O300_DL STRUCT, see below](#o300-dl).
@@ -302,10 +314,9 @@ classDiagram
 
 </div>
 
-Parfois il peut être utile de ne pas compléter toutes les informations selon le niveau de détail que l'on veut présenter.
+Sometimes it can be useful to leave out some information, depending on the level of detail you want to present.
 
-
-## Les signaux suivants sont disponibles.
+## The following signals are available.
 ```iecst
 // Work on Control Modules here
 fbI_Gripper(hw_Festo := GVL_Abox.uaAboxInterface.uaSchunkGripper,
@@ -393,7 +404,7 @@ END_STRUCT
 END_TYPE
 ```
 
-### UA_Schunk_mms
+#### UA_Schunk_mms
 ```iecst
 // Signal WORD pour 1000 incréments sur 10[mm]
 TYPE UA_Schunk_mms :
@@ -403,7 +414,7 @@ END_STRUCT
 END_TYPE
 ```
 
-### UA_Festo
+#### UA_Festo
 ```iecst
 TYPE UA_Festo :
 STRUCT
@@ -414,9 +425,32 @@ END_TYPE
 
 ### Structures for parameters
 
-##### Parameters
+#### PackTag LREAL Parameters
 We use LREAL Parameters, set in ``CtrlX PLC Application-HEVS_Tool-PRG_PackUpdate``.
 Advantage, all parameters set in the same file.
 
+You can modify command parameters on the user interface.
+
+```iecst
+	(*
+		Default robot command parameters
+	*)
+	// Default Axis velocity
+	PackTag.Command.Parameter_Lreal[1].Value := 0.05;
+	// Default Axis acceleration
+	PackTag.Command.Parameter_Lreal[2].Value := 0.5;
+	// Default Axis deceleration
+	PackTag.Command.Parameter_Lreal[3].Value := 0.5;
+	// Default Axis jerk
+	PackTag.Command.Parameter_Lreal[4].Value := 1;
+	// Default Camera X
+	PackTag.Command.Parameter_Lreal[5].Value := -130;
+	// Default Camera Y
+	PackTag.Command.Parameter_Lreal[6].Value := 130;
+	// Default Camera Z
+	PackTag.Command.Parameter_Lreal[7].Value := -54;
+	// Default Out of Camera X
+	PackTag.Command.Parameter_Lreal[8].Value := -80;
+```
 
 <!-- End of this README file -->
