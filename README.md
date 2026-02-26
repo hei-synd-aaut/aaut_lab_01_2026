@@ -29,11 +29,19 @@ Method, Interface, Property, Absract.
 
 ---
 
-# To prepare before the lab!
+## To prepare before the lab!
 1.  The UML Schema in a Markdown file wiht mermaid.
 2.  The internal code of the generator. But you will build the interface with methods and properies during the lab on the IDE.
 
 **<span style="color: red;">It is unlikely that you will be able to complete this assignment if you do not prepare the code in advance.</span>**
+
+## To be submitted after the lab
+Dans un fichier Markdown.md
+
+1.  a UML diagram of each part.
+2.  The code for Lab_01_AAut. 
+3.  The code for each method of CM_Gripper.
+4.  The test results for CM_Gripper.
 
 ## Note
 I often use the term "device" or "DM" (Device Module) when an element is simply a component of a Control Module.
@@ -266,6 +274,7 @@ What we'll do:
 4.  During **Aborting**, we deactivate the Gripper.
 5.  During **Execute**, we open the Gripper for 3 seconds when the laser sensor detects the target, then we close it when the detector loses the gripper.
 6.  The FB_I_Gripper is designed so that it deactivates itself in case of an error. Therefore, an **Abort** level alarm must be used in case of an error on the Gripper. *Abort command cause a passage thru the Aborting state*
+7.  You must add one or more warnings if the gripper remains stuck in a certain state. Test this by cutting off the compressed air.
 
 > If the DM_O300_DL_optical device, you will use it to program the CM_Gripper. Else you could use quick and dirty programming by using directly the [UA_O300_DL STRUCT, see below](#o300-dl).
 
