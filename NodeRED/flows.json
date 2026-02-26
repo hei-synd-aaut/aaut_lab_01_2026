@@ -280,33 +280,25 @@
             "a43f1a58035f0ebe",
             "2eb44dd7335eeaf0",
             "c31ccd0f9940604f",
-            "6dd10efd58c6a801",
             "19b78c243c116740",
             "e004369b95998bac",
             "9571688614fb9af2",
-            "3ac35963dd7a8645",
             "b787b3fb261f42a3",
-            "bd58d22fccda0388",
-            "3f92fd16b00260f9",
-            "3bcf8f02e2dee549",
-            "0438833fa2136006",
-            "041d72ffb08a75b3",
-            "60f1a4ae6d0b69ed",
-            "a6cccb2282157858",
-            "0a57d0f150308090",
-            "166a76f89fc29509",
-            "4fcaa79877075f92",
-            "8d761d7319e864ba",
-            "ff11c158079a075b",
-            "40cb52a1bf7c0c85",
             "af3a93da8d3c744d",
             "ebe30f9b37c01289",
-            "11c81c31122b639c"
+            "11c81c31122b639c",
+            "e242480ff82a3a3a",
+            "1102d1435fe31fdd",
+            "39c4c9b7c5ef9d64",
+            "7a2aca205cdb7324",
+            "041d72ffb08a75b3",
+            "166a76f89fc29509",
+            "40cb52a1bf7c0c85"
         ],
-        "x": -12,
+        "x": 14,
         "y": 39,
-        "w": 1584,
-        "h": 682
+        "w": 1472,
+        "h": 562
     },
     {
         "id": "b09a0d85ed7c1ded",
@@ -510,31 +502,6 @@
         "h": 782
     },
     {
-        "id": "bd58d22fccda0388",
-        "type": "group",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "9496db9397c47b6b",
-            "1102d1435fe31fdd",
-            "39c4c9b7c5ef9d64",
-            "7a2aca205cdb7324"
-        ],
-        "x": 14,
-        "y": 239,
-        "w": 1532,
-        "h": 82
-    },
-    {
         "id": "8966a7b403a8fb88",
         "type": "ui-theme",
         "name": "Default Theme",
@@ -557,7 +524,7 @@
         "id": "e45e312c80fc001e",
         "type": "ctrlx-config",
         "name": "Nodered_CtrlX",
-        "hostname": "192.168.1.111",
+        "hostname": "192.168.0.200",
         "debug": false
     },
     {
@@ -952,8 +919,8 @@
         "z": "82bd519cb64839c8",
         "group": "242c6a19674bbc75",
         "name": "",
-        "label": "Signal",
-        "order": 5,
+        "label": "Signal Subscribe",
+        "order": 7,
         "chartType": "line",
         "category": "topic",
         "categoryType": "msg",
@@ -976,7 +943,7 @@
         "pointShape": "circle",
         "pointRadius": 4,
         "showLegend": true,
-        "removeOlder": "30",
+        "removeOlder": "20",
         "removeOlderUnit": "1",
         "removeOlderPoints": "",
         "colors": [
@@ -1002,8 +969,8 @@
         "height": "6",
         "className": "",
         "interpolation": "linear",
-        "x": 610,
-        "y": 700,
+        "x": 830,
+        "y": 720,
         "wires": [
             []
         ]
@@ -1029,7 +996,7 @@
         "value": "payload",
         "valueType": "msg",
         "x": 610,
-        "y": 620,
+        "y": 660,
         "wires": []
     },
     {
@@ -1333,6 +1300,185 @@
         "wires": [
             [
                 "475fd3381dc32a2b"
+            ]
+        ]
+    },
+    {
+        "id": "d53fb396fbf24b49",
+        "type": "inject",
+        "z": "82bd519cb64839c8",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 800,
+        "wires": [
+            [
+                "6a7e62f209529f76"
+            ]
+        ]
+    },
+    {
+        "id": "6a7e62f209529f76",
+        "type": "ctrlx-datalayer-request",
+        "z": "82bd519cb64839c8",
+        "d": true,
+        "device": "e45e312c80fc001e",
+        "method": "READ",
+        "path": "plc/app/Application/sym/Lab_01_AAut/uiInterface/lrMySignal",
+        "payloadFormat": "value_type",
+        "name": "",
+        "pendingWarnLevel": 50,
+        "pendingErrorLevel": 100,
+        "x": 490,
+        "y": 800,
+        "wires": [
+            [
+                "89a18dcee479a612"
+            ]
+        ]
+    },
+    {
+        "id": "c11af49803c41d31",
+        "type": "ui-chart",
+        "z": "82bd519cb64839c8",
+        "d": true,
+        "group": "242c6a19674bbc75",
+        "name": "",
+        "label": "Signal Read",
+        "order": 6,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "-10",
+        "ymax": "10",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": "20",
+        "removeOlderUnit": "1",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "12",
+        "height": "6",
+        "className": "",
+        "interpolation": "linear",
+        "x": 850,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9acc20d53fb5095d",
+        "type": "ui-text",
+        "z": "82bd519cb64839c8",
+        "d": true,
+        "group": "242c6a19674bbc75",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Signal Subscribe",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 870,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "a5bbad2d55a5fd76",
+        "type": "debug",
+        "z": "82bd519cb64839c8",
+        "d": true,
+        "name": "Read",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "89a18dcee479a612",
+        "type": "function",
+        "z": "82bd519cb64839c8",
+        "d": true,
+        "name": "function 1",
+        "func": "var myValue;\n\nmyValue = msg.payload.value;\n\nmsg.payload = myValue;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 900,
+        "wires": [
+            [
+                "a5bbad2d55a5fd76",
+                "9acc20d53fb5095d",
+                "c11af49803c41d31"
             ]
         ]
     },
@@ -5396,7 +5542,7 @@
         "id": "39c4c9b7c5ef9d64",
         "type": "function",
         "z": "39d612a5c836f352",
-        "g": "bd58d22fccda0388",
+        "g": "6936d80f28f11f37",
         "name": "SendValueToTopic",
         "func": "var newMsg = msg;\n\nnewMsg.payload = {type:\"double\",value:msg.payload};\n\nreturn newMsg;",
         "outputs": 1,
@@ -5405,8 +5551,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 890,
-        "y": 280,
+        "x": 690,
+        "y": 300,
         "wires": [
             [
                 "7a2aca205cdb7324"
@@ -5417,18 +5563,20 @@
         "id": "7a2aca205cdb7324",
         "type": "ctrlx-datalayer-request",
         "z": "39d612a5c836f352",
-        "g": "bd58d22fccda0388",
+        "g": "6936d80f28f11f37",
         "device": "e45e312c80fc001e",
         "method": "WRITE",
-        "path": "plc/app/Application/sym/PRG_Unit/lrAbsPosition_X",
+        "path": "plc/app/Application/sym/PRG_Unit/emRobot/lrAbsPosition_X",
         "payloadFormat": "value_type",
         "name": "",
         "pendingWarnLevel": 50,
         "pendingErrorLevel": 100,
-        "x": 1300,
-        "y": 280,
+        "x": 1040,
+        "y": 300,
         "wires": [
-            []
+            [
+                "e242480ff82a3a3a"
+            ]
         ]
     },
     {
@@ -5439,7 +5587,7 @@
         "name": "Axis Absolute Position",
         "info": "",
         "x": 140,
-        "y": 480,
+        "y": 560,
         "wires": []
     },
     {
@@ -5466,40 +5614,6 @@
         "x": 830,
         "y": 80,
         "wires": []
-    },
-    {
-        "id": "9496db9397c47b6b",
-        "type": "ui-number-input",
-        "z": "39d612a5c836f352",
-        "g": "bd58d22fccda0388",
-        "group": "c9b02d1d7da2032c",
-        "name": "X Absolute Position",
-        "label": "X Absolute Position",
-        "order": 2,
-        "width": "1",
-        "height": "1",
-        "topic": "topic",
-        "topicType": "msg",
-        "min": "-500",
-        "max": "500",
-        "step": 1,
-        "tooltip": "",
-        "passthru": true,
-        "sendOnBlur": true,
-        "sendOnEnter": true,
-        "className": "",
-        "clearable": false,
-        "icon": "",
-        "iconPosition": "left",
-        "iconInnerPosition": "inside",
-        "spinner": "default",
-        "x": 590,
-        "y": 280,
-        "wires": [
-            [
-                "39c4c9b7c5ef9d64"
-            ]
-        ]
     },
     {
         "id": "9514f3e3849552db",
@@ -5589,16 +5703,16 @@
         "id": "1102d1435fe31fdd",
         "type": "ctrlx-datalayer-subscribe",
         "z": "39d612a5c836f352",
-        "g": "bd58d22fccda0388",
+        "g": "6936d80f28f11f37",
         "subscription": "c5b0190b901ecb86",
-        "path": "plc/app/Application/sym/PRG_Unit/lrAbsPosition_X",
+        "path": "plc/app/Application/sym/PRG_Unit/emRobot/lrAbsPosition_X",
         "name": "",
         "inputs": 0,
-        "x": 230,
-        "y": 280,
+        "x": 210,
+        "y": 300,
         "wires": [
             [
-                "9496db9397c47b6b"
+                "041d72ffb08a75b3"
             ]
         ]
     },
@@ -5609,15 +5723,17 @@
         "g": "6936d80f28f11f37",
         "device": "e45e312c80fc001e",
         "method": "WRITE",
-        "path": "plc/app/Application/sym/PRG_Unit/lrAbsPosition_Y",
+        "path": "plc/app/Application/sym/PRG_Unit/emRobot/lrAbsPosition_Y",
         "payloadFormat": "value_type",
         "name": "",
         "pendingWarnLevel": 50,
         "pendingErrorLevel": 100,
-        "x": 1300,
-        "y": 340,
+        "x": 1040,
+        "y": 380,
         "wires": [
-            []
+            [
+                "e242480ff82a3a3a"
+            ]
         ]
     },
     {
@@ -5633,45 +5749,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 890,
-        "y": 340,
+        "x": 690,
+        "y": 380,
         "wires": [
             [
                 "2eb44dd7335eeaf0"
-            ]
-        ]
-    },
-    {
-        "id": "6dd10efd58c6a801",
-        "type": "ui-number-input",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "group": "c9b02d1d7da2032c",
-        "name": "Y Absolute Position",
-        "label": "Y Absolute Position",
-        "order": 5,
-        "width": "1",
-        "height": "1",
-        "topic": "topic",
-        "topicType": "msg",
-        "min": "-500",
-        "max": "500",
-        "step": 1,
-        "tooltip": "",
-        "passthru": true,
-        "sendOnBlur": true,
-        "sendOnEnter": true,
-        "className": "",
-        "clearable": false,
-        "icon": "",
-        "iconPosition": "left",
-        "iconInnerPosition": "inside",
-        "spinner": "default",
-        "x": 590,
-        "y": 340,
-        "wires": [
-            [
-                "c31ccd0f9940604f"
             ]
         ]
     },
@@ -5681,14 +5763,14 @@
         "z": "39d612a5c836f352",
         "g": "6936d80f28f11f37",
         "subscription": "c5b0190b901ecb86",
-        "path": "plc/app/Application/sym/PRG_Unit/lrAbsPosition_Y",
+        "path": "plc/app/Application/sym/PRG_Unit/emRobot/lrAbsPosition_Y",
         "name": "",
         "inputs": 0,
-        "x": 230,
-        "y": 340,
+        "x": 210,
+        "y": 380,
         "wires": [
             [
-                "6dd10efd58c6a801"
+                "166a76f89fc29509"
             ]
         ]
     },
@@ -5699,15 +5781,17 @@
         "g": "6936d80f28f11f37",
         "device": "e45e312c80fc001e",
         "method": "WRITE",
-        "path": "plc/app/Application/sym/PRG_Unit/lrAbsPosition_Z",
+        "path": "plc/app/Application/sym/PRG_Unit/emRobot/lrAbsPosition_Z",
         "payloadFormat": "value_type",
         "name": "",
         "pendingWarnLevel": 50,
         "pendingErrorLevel": 100,
-        "x": 1300,
-        "y": 400,
+        "x": 1040,
+        "y": 460,
         "wires": [
-            []
+            [
+                "e242480ff82a3a3a"
+            ]
         ]
     },
     {
@@ -5723,45 +5807,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 890,
-        "y": 400,
+        "x": 690,
+        "y": 460,
         "wires": [
             [
                 "e004369b95998bac"
-            ]
-        ]
-    },
-    {
-        "id": "3ac35963dd7a8645",
-        "type": "ui-number-input",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "group": "c9b02d1d7da2032c",
-        "name": "Z Absolute Position",
-        "label": "Z Absolute Position",
-        "order": 8,
-        "width": "1",
-        "height": "1",
-        "topic": "topic",
-        "topicType": "msg",
-        "min": "-500",
-        "max": "500",
-        "step": 1,
-        "tooltip": "",
-        "passthru": true,
-        "sendOnBlur": true,
-        "sendOnEnter": true,
-        "className": "",
-        "clearable": false,
-        "icon": "",
-        "iconPosition": "left",
-        "iconInnerPosition": "inside",
-        "spinner": "default",
-        "x": 590,
-        "y": 400,
-        "wires": [
-            [
-                "9571688614fb9af2"
             ]
         ]
     },
@@ -5771,290 +5821,14 @@
         "z": "39d612a5c836f352",
         "g": "6936d80f28f11f37",
         "subscription": "c5b0190b901ecb86",
-        "path": "plc/app/Application/sym/PRG_Unit/lrAbsPosition_Z",
-        "name": "",
-        "inputs": 0,
-        "x": 230,
-        "y": 400,
-        "wires": [
-            [
-                "3ac35963dd7a8645"
-            ]
-        ]
-    },
-    {
-        "id": "3f92fd16b00260f9",
-        "type": "ctrlx-datalayer-subscribe",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "subscription": "c5b0190b901ecb86",
-        "path": "plc/app/Application/sym/PRG_Unit/lrAbsPosition_X",
+        "path": "plc/app/Application/sym/PRG_Unit/emRobot/lrAbsPosition_Z",
         "name": "",
         "inputs": 0,
         "x": 210,
-        "y": 540,
-        "wires": [
-            [
-                "041d72ffb08a75b3"
-            ]
-        ]
-    },
-    {
-        "id": "3bcf8f02e2dee549",
-        "type": "function",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "name": "SendValueToTopic",
-        "func": "var newMsg = msg;\n\nnewMsg.payload = {type:\"double\",value:msg.payload};\n\nreturn newMsg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 870,
-        "y": 540,
-        "wires": [
-            [
-                "0438833fa2136006"
-            ]
-        ]
-    },
-    {
-        "id": "0438833fa2136006",
-        "type": "ctrlx-datalayer-request",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "device": "e45e312c80fc001e",
-        "method": "WRITE",
-        "path": "plc/app/Application/sym/PRG_Unit/lrAbsPosition_X",
-        "payloadFormat": "value_type",
-        "name": "",
-        "pendingWarnLevel": 50,
-        "pendingErrorLevel": 100,
-        "x": 1260,
-        "y": 540,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "041d72ffb08a75b3",
-        "type": "ui-slider",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "group": "c9b02d1d7da2032c",
-        "name": "",
-        "label": "X-Axis",
-        "tooltip": "",
-        "order": 3,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "outs": "all",
-        "topic": "topic",
-        "topicType": "msg",
-        "thumbLabel": "true",
-        "showTicks": "always",
-        "min": "-200",
-        "max": "200",
-        "step": "1",
-        "className": "",
-        "iconPrepend": "",
-        "iconAppend": "",
-        "color": "",
-        "colorTrack": "",
-        "colorThumb": "",
-        "showTextField": false,
-        "x": 550,
-        "y": 540,
-        "wires": [
-            [
-                "3bcf8f02e2dee549"
-            ]
-        ]
-    },
-    {
-        "id": "60f1a4ae6d0b69ed",
-        "type": "ctrlx-datalayer-request",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "device": "e45e312c80fc001e",
-        "method": "WRITE",
-        "path": "plc/app/Application/sym/PRG_Unit/lrAbsPosition_Y",
-        "payloadFormat": "value_type",
-        "name": "",
-        "pendingWarnLevel": 50,
-        "pendingErrorLevel": 100,
-        "x": 1260,
-        "y": 600,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a6cccb2282157858",
-        "type": "function",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "name": "SendValueToTopic",
-        "func": "var newMsg = msg;\n\nnewMsg.payload = {type:\"double\",value:msg.payload};\n\nreturn newMsg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 870,
-        "y": 600,
-        "wires": [
-            [
-                "60f1a4ae6d0b69ed"
-            ]
-        ]
-    },
-    {
-        "id": "0a57d0f150308090",
-        "type": "ctrlx-datalayer-subscribe",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "subscription": "c5b0190b901ecb86",
-        "path": "plc/app/Application/sym/PRG_Unit/lrAbsPosition_Y",
-        "name": "",
-        "inputs": 0,
-        "x": 210,
-        "y": 600,
-        "wires": [
-            [
-                "166a76f89fc29509"
-            ]
-        ]
-    },
-    {
-        "id": "166a76f89fc29509",
-        "type": "ui-slider",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "group": "c9b02d1d7da2032c",
-        "name": "",
-        "label": "Y-Axis",
-        "tooltip": "",
-        "order": 6,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "outs": "all",
-        "topic": "topic",
-        "topicType": "msg",
-        "thumbLabel": "true",
-        "showTicks": "always",
-        "min": "-150",
-        "max": "150",
-        "step": 1,
-        "className": "",
-        "iconPrepend": "",
-        "iconAppend": "",
-        "color": "",
-        "colorTrack": "",
-        "colorThumb": "",
-        "showTextField": false,
-        "x": 550,
-        "y": 600,
-        "wires": [
-            [
-                "a6cccb2282157858"
-            ]
-        ]
-    },
-    {
-        "id": "ff11c158079a075b",
-        "type": "ctrlx-datalayer-request",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "device": "e45e312c80fc001e",
-        "method": "WRITE",
-        "path": "plc/app/Application/sym/PRG_Unit/lrAbsPosition_Z",
-        "payloadFormat": "value_type",
-        "name": "",
-        "pendingWarnLevel": 50,
-        "pendingErrorLevel": 100,
-        "x": 1260,
-        "y": 680,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8d761d7319e864ba",
-        "type": "function",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "name": "SendValueToTopic",
-        "func": "var newMsg = msg;\n\nnewMsg.payload = {type:\"double\",value:msg.payload};\n\nreturn newMsg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 870,
-        "y": 680,
-        "wires": [
-            [
-                "ff11c158079a075b"
-            ]
-        ]
-    },
-    {
-        "id": "4fcaa79877075f92",
-        "type": "ctrlx-datalayer-subscribe",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "subscription": "c5b0190b901ecb86",
-        "path": "plc/app/Application/sym/PRG_Unit/lrAbsPosition_Z",
-        "name": "",
-        "inputs": 0,
-        "x": 210,
-        "y": 680,
+        "y": 460,
         "wires": [
             [
                 "40cb52a1bf7c0c85"
-            ]
-        ]
-    },
-    {
-        "id": "40cb52a1bf7c0c85",
-        "type": "ui-slider",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "group": "c9b02d1d7da2032c",
-        "name": "",
-        "label": "Z-Axis",
-        "tooltip": "",
-        "order": 9,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "outs": "all",
-        "topic": "topic",
-        "topicType": "msg",
-        "thumbLabel": "true",
-        "showTicks": "always",
-        "min": "-150",
-        "max": "150",
-        "step": 1,
-        "className": "",
-        "iconPrepend": "",
-        "iconAppend": "",
-        "color": "",
-        "colorTrack": "",
-        "colorThumb": "",
-        "showTextField": false,
-        "x": 550,
-        "y": 680,
-        "wires": [
-            [
-                "8d761d7319e864ba"
             ]
         ]
     },
@@ -6118,6 +5892,132 @@
         "wires": [
             [
                 "92d34eb9ae0563ae"
+            ]
+        ]
+    },
+    {
+        "id": "e242480ff82a3a3a",
+        "type": "debug",
+        "z": "39d612a5c836f352",
+        "g": "6936d80f28f11f37",
+        "name": "To Axes",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "041d72ffb08a75b3",
+        "type": "ui-slider",
+        "z": "39d612a5c836f352",
+        "g": "6936d80f28f11f37",
+        "group": "c9b02d1d7da2032c",
+        "name": "",
+        "label": "X-Axis",
+        "tooltip": "",
+        "order": 3,
+        "width": "4",
+        "height": "1",
+        "passthru": false,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "thumbLabel": "true",
+        "showTicks": "always",
+        "min": "-200",
+        "max": "200",
+        "step": "1",
+        "className": "",
+        "iconPrepend": "",
+        "iconAppend": "",
+        "color": "",
+        "colorTrack": "",
+        "colorThumb": "",
+        "showTextField": true,
+        "x": 490,
+        "y": 300,
+        "wires": [
+            [
+                "39c4c9b7c5ef9d64"
+            ]
+        ]
+    },
+    {
+        "id": "166a76f89fc29509",
+        "type": "ui-slider",
+        "z": "39d612a5c836f352",
+        "g": "6936d80f28f11f37",
+        "group": "c9b02d1d7da2032c",
+        "name": "",
+        "label": "Y-Axis",
+        "tooltip": "",
+        "order": 6,
+        "width": "4",
+        "height": "1",
+        "passthru": false,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "thumbLabel": "true",
+        "showTicks": "always",
+        "min": "-150",
+        "max": "150",
+        "step": 1,
+        "className": "",
+        "iconPrepend": "",
+        "iconAppend": "",
+        "color": "",
+        "colorTrack": "",
+        "colorThumb": "",
+        "showTextField": true,
+        "x": 490,
+        "y": 380,
+        "wires": [
+            [
+                "c31ccd0f9940604f"
+            ]
+        ]
+    },
+    {
+        "id": "40cb52a1bf7c0c85",
+        "type": "ui-slider",
+        "z": "39d612a5c836f352",
+        "g": "6936d80f28f11f37",
+        "group": "c9b02d1d7da2032c",
+        "name": "",
+        "label": "Z-Axis",
+        "tooltip": "",
+        "order": 9,
+        "width": "4",
+        "height": "1",
+        "passthru": false,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "thumbLabel": "true",
+        "showTicks": "always",
+        "min": "-150",
+        "max": "150",
+        "step": 1,
+        "className": "",
+        "iconPrepend": "",
+        "iconAppend": "",
+        "color": "",
+        "colorTrack": "",
+        "colorThumb": "",
+        "showTextField": true,
+        "x": 490,
+        "y": 460,
+        "wires": [
+            [
+                "9571688614fb9af2"
             ]
         ]
     }
