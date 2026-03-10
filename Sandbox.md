@@ -231,4 +231,18 @@ fbAlarmIgripper(xSetAlarm := fbI_Gripper.Error,
 
 ```
 
+```mermaid
+classDiagram
+   class I_Sensor{
+      <<interface>>
+   }
+   class FB_Sensor{
+      <<abstract>>
+   }
+   class FB_SoundSensor
+   
+   I_Sensor <|.. FB_Sensor
+   FB_Sensor <|-- FB_SoundSensor
+```
+
 <!--End of the file-->

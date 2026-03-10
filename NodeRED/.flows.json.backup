@@ -295,9 +295,9 @@
             "166a76f89fc29509",
             "40cb52a1bf7c0c85"
         ],
-        "x": -6,
+        "x": 14,
         "y": 39,
-        "w": 1752,
+        "w": 1472,
         "h": 562
     },
     {
@@ -909,7 +909,8 @@
         "wires": [
             [
                 "aedfcd69dfd265ef",
-                "dac0bb64750c6121"
+                "dac0bb64750c6121",
+                "71f7cc30e9af822e"
             ]
         ]
     },
@@ -920,7 +921,7 @@
         "group": "242c6a19674bbc75",
         "name": "",
         "label": "Signal Subscribe",
-        "order": 7,
+        "order": 9,
         "chartType": "line",
         "category": "topic",
         "categoryType": "msg",
@@ -1361,7 +1362,7 @@
         "group": "242c6a19674bbc75",
         "name": "",
         "label": "Signal Read",
-        "order": 6,
+        "order": 7,
         "chartType": "line",
         "category": "topic",
         "categoryType": "msg",
@@ -1422,7 +1423,7 @@
         "z": "82bd519cb64839c8",
         "d": true,
         "group": "242c6a19674bbc75",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
         "name": "",
@@ -1479,6 +1480,193 @@
                 "a5bbad2d55a5fd76",
                 "9acc20d53fb5095d",
                 "c11af49803c41d31"
+            ]
+        ]
+    },
+    {
+        "id": "f65ac4dedccb3634",
+        "type": "ui-text",
+        "z": "82bd519cb64839c8",
+        "group": "242c6a19674bbc75",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Signal",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 610,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "24ff59897a5c484c",
+        "type": "ui-chart",
+        "z": "82bd519cb64839c8",
+        "group": "242c6a19674bbc75",
+        "name": "",
+        "label": "Signal Subscribe",
+        "order": 8,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "-10",
+        "ymax": "10",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": "20",
+        "removeOlderUnit": "1",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "12",
+        "height": "6",
+        "className": "",
+        "interpolation": "linear",
+        "x": 810,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "50f18f46253d6a36",
+        "type": "ctrlx-datalayer-request",
+        "z": "82bd519cb64839c8",
+        "device": "e45e312c80fc001e",
+        "method": "READ",
+        "path": "plc/app/Application/sym/Lab_01_AAut/uiInterface/lrMySignal",
+        "payloadFormat": "value_type",
+        "name": "",
+        "pendingWarnLevel": 50,
+        "pendingErrorLevel": 100,
+        "x": 270,
+        "y": 1080,
+        "wires": [
+            [
+                "9cf9903400af1d90"
+            ]
+        ]
+    },
+    {
+        "id": "605fcea6c6e6d7a4",
+        "type": "inject",
+        "z": "82bd519cb64839c8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 1000,
+        "wires": [
+            [
+                "50f18f46253d6a36"
+            ]
+        ]
+    },
+    {
+        "id": "5549eeae7f292857",
+        "type": "debug",
+        "z": "82bd519cb64839c8",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "71f7cc30e9af822e",
+        "type": "debug",
+        "z": "82bd519cb64839c8",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "9cf9903400af1d90",
+        "type": "function",
+        "z": "82bd519cb64839c8",
+        "name": "function 2",
+        "func": "var newMsg = [];\n\nnewMsg.payload = msg.payload.value;\n\nreturn newMsg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1060,
+        "wires": [
+            [
+                "24ff59897a5c484c",
+                "5549eeae7f292857"
             ]
         ]
     },
@@ -5551,8 +5739,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 890,
-        "y": 280,
+        "x": 690,
+        "y": 300,
         "wires": [
             [
                 "7a2aca205cdb7324"
@@ -5571,8 +5759,8 @@
         "name": "",
         "pendingWarnLevel": 50,
         "pendingErrorLevel": 100,
-        "x": 1280,
-        "y": 280,
+        "x": 1040,
+        "y": 300,
         "wires": [
             [
                 "e242480ff82a3a3a"
@@ -5621,7 +5809,7 @@
         "z": "39d612a5c836f352",
         "g": "6936d80f28f11f37",
         "group": "c9b02d1d7da2032c",
-        "order": 4,
+        "order": 3,
         "width": "2",
         "height": "1",
         "name": "Y Axis Absolute Position",
@@ -5663,7 +5851,7 @@
         "z": "39d612a5c836f352",
         "g": "6936d80f28f11f37",
         "group": "c9b02d1d7da2032c",
-        "order": 7,
+        "order": 5,
         "width": "2",
         "height": "1",
         "name": "Z Axis Absolute Position",
@@ -5709,7 +5897,7 @@
         "name": "",
         "inputs": 0,
         "x": 210,
-        "y": 280,
+        "y": 300,
         "wires": [
             [
                 "041d72ffb08a75b3"
@@ -5728,7 +5916,7 @@
         "name": "",
         "pendingWarnLevel": 50,
         "pendingErrorLevel": 100,
-        "x": 1280,
+        "x": 1040,
         "y": 380,
         "wires": [
             [
@@ -5749,7 +5937,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 870,
+        "x": 690,
         "y": 380,
         "wires": [
             [
@@ -5766,7 +5954,7 @@
         "path": "plc/app/Application/sym/PRG_Unit/emRobot/lrAbsPosition_Y",
         "name": "",
         "inputs": 0,
-        "x": 190,
+        "x": 210,
         "y": 380,
         "wires": [
             [
@@ -5786,7 +5974,7 @@
         "name": "",
         "pendingWarnLevel": 50,
         "pendingErrorLevel": 100,
-        "x": 1280,
+        "x": 1040,
         "y": 460,
         "wires": [
             [
@@ -5807,7 +5995,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 870,
+        "x": 690,
         "y": 460,
         "wires": [
             [
@@ -5901,7 +6089,7 @@
         "z": "39d612a5c836f352",
         "g": "6936d80f28f11f37",
         "name": "To Axes",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -5909,7 +6097,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1640,
+        "x": 1380,
         "y": 380,
         "wires": []
     },
@@ -5922,7 +6110,7 @@
         "name": "",
         "label": "X-Axis",
         "tooltip": "",
-        "order": 3,
+        "order": 2,
         "width": "4",
         "height": "1",
         "passthru": false,
@@ -5941,8 +6129,8 @@
         "colorTrack": "",
         "colorThumb": "",
         "showTextField": true,
-        "x": 570,
-        "y": 280,
+        "x": 490,
+        "y": 300,
         "wires": [
             [
                 "39c4c9b7c5ef9d64"
@@ -5957,6 +6145,42 @@
         "group": "c9b02d1d7da2032c",
         "name": "",
         "label": "Y-Axis",
+        "tooltip": "",
+        "order": 4,
+        "width": "4",
+        "height": "1",
+        "passthru": false,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "thumbLabel": "true",
+        "showTicks": "always",
+        "min": "-150",
+        "max": "150",
+        "step": 1,
+        "className": "",
+        "iconPrepend": "",
+        "iconAppend": "",
+        "color": "",
+        "colorTrack": "",
+        "colorThumb": "",
+        "showTextField": true,
+        "x": 490,
+        "y": 380,
+        "wires": [
+            [
+                "c31ccd0f9940604f"
+            ]
+        ]
+    },
+    {
+        "id": "40cb52a1bf7c0c85",
+        "type": "ui-slider",
+        "z": "39d612a5c836f352",
+        "g": "6936d80f28f11f37",
+        "group": "c9b02d1d7da2032c",
+        "name": "",
+        "label": "Z-Axis",
         "tooltip": "",
         "order": 6,
         "width": "4",
@@ -5977,43 +6201,7 @@
         "colorTrack": "",
         "colorThumb": "",
         "showTextField": true,
-        "x": 570,
-        "y": 380,
-        "wires": [
-            [
-                "c31ccd0f9940604f"
-            ]
-        ]
-    },
-    {
-        "id": "40cb52a1bf7c0c85",
-        "type": "ui-slider",
-        "z": "39d612a5c836f352",
-        "g": "6936d80f28f11f37",
-        "group": "c9b02d1d7da2032c",
-        "name": "",
-        "label": "Z-Axis",
-        "tooltip": "",
-        "order": 9,
-        "width": "4",
-        "height": "1",
-        "passthru": false,
-        "outs": "all",
-        "topic": "topic",
-        "topicType": "msg",
-        "thumbLabel": "true",
-        "showTicks": "always",
-        "min": "-150",
-        "max": "150",
-        "step": 1,
-        "className": "",
-        "iconPrepend": "",
-        "iconAppend": "",
-        "color": "",
-        "colorTrack": "",
-        "colorThumb": "",
-        "showTextField": true,
-        "x": 570,
+        "x": 490,
         "y": 460,
         "wires": [
             [
